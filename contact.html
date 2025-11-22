@@ -26,96 +26,259 @@
     });
   </script>
 
-  <style>
-    body {
-      margin-top: 100px;
-      background-color: #0f172a;
-      font-family: "Poppins", sans-serif;
-      color: #f8fafc;
-    }
+<style>
+/* ---------- BASIC RESET ---------- */
+* { margin:0; padding:0; box-sizing:border-box; font-family:"Poppins", sans-serif; }
+body { 
+  background:#0f172a; 
+  color:#f8fafc; 
+  line-height:1.6; 
+  scroll-behavior:smooth; 
+  margin-top:80px;
+  overflow-x:hidden;
+}
 
-    .contact {
-      padding: 80px 20px;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 80vh;
-    }
+/* ---------- FLOATING BACKGROUND ICONS ---------- */
+.floating-icons i {
+  position:absolute;
+  font-size:65px;
+  opacity:0.07;
+  color:#38bdf8;
+  animation: floatIcons 12s linear infinite;
+  filter: blur(2px);
+}
 
-    .section-title {
-      font-size: 2.5rem;
-      margin-bottom: 10px;
-      color: #38bdf8; /* blue color now */
-    }
+@keyframes floatIcons {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-40px) rotate(180deg); }
+  100% { transform: translateY(0px) rotate(360deg); }
+}
 
-    .section-subtitle {
-      font-size: 1.2rem;
-      margin-bottom: 30px;
-      color: #a1a1aa;
-    }
+/* Positions */
+.icon1 { top:120px; left:40px; animation-duration:11s; }
+.icon2 { top:420px; right:60px; animation-duration:13s; }
+.icon3 { bottom:120px; left:50%; animation-duration:15s; }
+.icon4 { top:260px; left:65%; animation-duration:9s; }
+.icon5 { bottom:200px; right:40px; animation-duration:14s; }
 
-    .google-form {
-      width: 100%;
-      max-width: 500px;
-      background: rgba(255, 255, 255, 0.07);
-      backdrop-filter: blur(12px);
-      border-radius: 20px;
-      padding: 15px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-      animation: fadeIn 1s ease-in-out;
-      transition: transform 0.3s ease;
-    }
+/* ---------- HEADER ---------- */
+header {
+  width:100%; background: rgba(17,25,40,0.75); backdrop-filter:blur(15px);
+  display:flex; justify-content:space-between; align-items:center;
+  padding:18px 8%; position:fixed; top:0; left:0; z-index:1000;
+  border-bottom:1px solid rgba(255,255,255,0.1); transition:0.4s ease;
+}
+header.scrolled { background: rgba(17,25,40,0.95); box-shadow:0 4px 20px rgba(56,189,248,0.35); padding:14px 8%; }
+header .logo { font-size:1rem; font-weight:700; color:#38bdf8; letter-spacing:1px; cursor:pointer; }
 
-    .google-form:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.45);
-    }
+/* Navigation */
+nav .nav-links { display:flex; gap:35px; }
+nav .nav-links li { list-style:none; }
+nav .nav-links li a {
+  color:#f1f5f9; text-decoration:none; font-weight:600;
+  padding:5px 0; transition:0.3s;
+}
+nav .nav-links li a.active { color:#a78bfa; text-shadow:0 0 8px #38bdf8; }
 
-    iframe {
-      width: 100%;
-      height: 450px;
-      border: none;
-      border-radius: 15px;
-    }
+/* Hamburger */
+.menu-toggle { display:none; font-size:1.6rem; cursor:pointer; color:#38bdf8; }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+@media(max-width:768px){
+  nav .nav-links {
+    position:fixed; top:0; right:-100%; flex-direction:column;
+    background:rgba(17,25,40,0.95); width:220px; height:100vh; padding-top:70px;
+    gap:20px; transition:right 0.4s ease; z-index:999;
+  }
+  nav .nav-links.active { right:0; }
+  .menu-toggle { display:block; }
+}
 
-    @media (max-width: 700px) {
-      .section-title { font-size: 2rem; }
-      .section-subtitle { font-size: 1rem; }
-      iframe { height: 400px; }
-    }
+/* ---------- CONTACT SECTION ---------- */
+.contact {
+  padding:80px 20px;
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+.section-title { font-size:2.5rem; margin-bottom:10px; color:#38bdf8; }
+.section-subtitle { font-size:1.2rem; margin-bottom:30px; color:#a1a1aa; }
 
-    @media (max-width: 500px) {
-      .google-form { max-width: 90%; padding: 10px; }
-      iframe { height: 350px; }
-    }
-  </style>
+/* ---------- PHOTO + DOUBLE ANIMATION ---------- */
+.profile-wrapper {
+  width:190px;
+  height:190px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  margin-bottom:30px;
+}
+
+.outer-ring {
+  position:absolute;
+  width:190px;
+  height:190px;
+  border-radius:50%;
+  border:3px dashed #38bdf8;
+  animation: rotate 7s linear infinite;
+}
+
+.inner-ring {
+  position:absolute;
+  width:170px;
+  height:170px;
+  border-radius:50%;
+  border:3px solid #a78bfa;
+  animation: rotateReverse 6s linear infinite;
+}
+
+@keyframes rotate { from { transform:rotate(0deg); } to { transform:rotate(360deg); } }
+@keyframes rotateReverse { from { transform:rotate(360deg); } to { transform:rotate(0deg); } }
+
+.profile-photo {
+  width:150px;
+  height:150px;
+  border-radius:50%;
+  overflow:hidden;
+  z-index:10;
+  border:4px solid #38bdf8;
+  box-shadow:0 10px 25px rgba(0,0,0,0.4);
+}
+.profile-photo img { width:100%; height:100%; object-fit:cover; }
+
+/* ---------- CONTACT INFO ---------- */
+.contact-info {
+  margin-top:10px;
+  background: rgba(255,255,255,0.07);
+  padding:25px;
+  border-radius:20px;
+  width:100%;
+  max-width:450px;
+  text-align:left;
+  box-shadow:0 8px 20px rgba(0,0,0,0.4);
+}
+
+.contact-info h3 {
+  text-align:center;
+  font-size:1.5rem;
+  color:#38bdf8;
+  margin-bottom:15px;
+}
+
+.contact-info p {
+  font-size:1.1rem;
+  margin-bottom:18px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+/* Rotating Contact Icons */
+.contact-info i {
+  font-size:1.3rem;
+  color:#38bdf8;
+  animation: iconSpin 3s linear infinite;
+}
+
+@keyframes iconSpin {
+  from { transform:rotate(0deg); }
+  to { transform:rotate(360deg); }
+}
+
+/* ---------- FOOTER ---------- */
+footer { 
+  background: rgba(17,25,40,0.95); 
+  text-align:center; 
+  padding:25px 10px; 
+  color:#a1a1aa; 
+  font-size:0.95rem; 
+  border-top:1px solid rgba(56,189,248,0.2);
+}
+footer a { color:#38bdf8; }
+footer a:hover { color:#a78bfa; }
+
+</style>
 </head>
 
 <body>
-  <div id="header"></div>
 
-  <section class="contact">
-    <h2 class="section-title">Get In Touch</h2>
-    <p class="section-subtitle">Send me a message through this form ✨</p>
+<!-- FLOATING BACKGROUND ICONS -->
+<div class="floating-icons">
+  <i class="fa fa-envelope icon1"></i>
+  <i class="fa fa-phone icon2"></i>
+  <i class="fa fa-map-marker-alt icon3"></i>
+  <i class="fa fa-envelope-open icon4"></i>
+  <i class="fa fa-location-arrow icon5"></i>
+</div>
 
-    <div class="google-form">
-      <iframe 
-        src="https://docs.google.com/forms/d/e/1FAIpQLSfSx9vscpY9Evq87j1sN4TwrtYrr-koZ6tZj85SJ8nLChzd4w/viewform?usp=header" 
-        frameborder="0" 
-        marginheight="0" 
-        marginwidth="0">
-        Loading…
-      </iframe>
+<!-- ===== HEADER ===== -->
+<header id="header">
+  <div class="logo">S.M INSATH</div>
+  <nav>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="skills.html">Skills</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="resume.html">Resume $ Certificats</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+    </ul>
+    <div class="menu-toggle" id="menu-toggle"><i class="fa fa-bars"></i></div>
+  </nav>
+</header>
+
+<!-- ===== CONTACT SECTION ===== -->
+<section class="contact">
+  <h2 class="section-title">Get In Touch</h2>
+  <p class="section-subtitle">Feel free to contact me anytime ✨</p>
+
+  <!-- Profile Photo -->
+  <div class="profile-wrapper">
+    <div class="outer-ring"></div>
+    <div class="inner-ring"></div>
+
+    <div class="profile-photo">
+      <img src="profile04.png" alt="Profile Photo">
     </div>
-  </section>
+  </div>
 
-  <div id="footer"></div>
+  <!-- Contact Info -->
+  <div class="contact-info">
+    <h3>Contact Details</h3>
+
+    <p><i class="fa fa-envelope"></i> 
+      <a href="mailto:mohammedimmmu678@gmail.com">mohammedimmmu678@gmail.com</a>
+    </p>
+
+    <p><i class="fa fa-phone"></i> 
+      <a href="tel:+94776547269">+94 77 654 7269</a>
+    </p>
+
+    <p><i class="fa fa-map-marker-alt"></i>
+      <a href="https://maps.google.com/?q=Akresseye, Horowpathana, Anuradhapura, Sri Lanka" target="_blank">
+        Akresseye, Horowpathana, Anuradhapura, Sri Lanka
+      </a>
+    </p>
+  </div>
+</section>
+
+<script>
+const menuToggle=document.getElementById("menu-toggle");
+const navLinks=document.querySelector(".nav-links");
+const header=document.getElementById("header");
+
+menuToggle.addEventListener("click",()=> {
+  navLinks.classList.toggle("active");
+  document.body.style.overflow = navLinks.classList.contains("active") ? "hidden" : "auto";
+});
+
+window.addEventListener("scroll",()=> {
+  if(window.scrollY > 50) header.classList.add("scrolled");
+  else header.classList.remove("scrolled");
+});
+</script>
+
 </body>
 </html>
