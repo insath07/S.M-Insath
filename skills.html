@@ -3,60 +3,71 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Skills | S.M INSATH </title>
+<title>Skills | INSATH Portfolio</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  // Load Header
-  fetch("header.html").then(res => res.text()).then(data => {
-    document.getElementById("header").innerHTML = data;
-    const menuToggle = document.getElementById('menu-toggle');
-    const navLinks = document.querySelector('.nav-links');
-    if (menuToggle) {
-      menuToggle.addEventListener('click', () => navLinks.classList.toggle('show'));
-    }
-  });
-
-  // Load Footer
-  fetch("footer.html").then(res => res.text()).then(data => {
-    document.getElementById("footer").innerHTML = data;
-  });
-});
-</script>
-
 <style>
-body {
-  margin: 0;
-  font-family: "Poppins", sans-serif;
-  background-color: #0f172a;
-  color: #f8fafc;
-}
+/* ---------- BASIC RESET ---------- */
+* { margin:0; padding:0; box-sizing:border-box; font-family:"Poppins", sans-serif; }
+body { background:#0f172a; color:#f8fafc; line-height:1.6; scroll-behavior:smooth; margin-top:80px; display:flex; flex-direction:column; min-height:100vh; }
 
-/* ===== Skills Section ===== */
+/* ---------- HEADER ---------- */
+header {
+  width:100%; background: rgba(17,25,40,0.75); backdrop-filter:blur(15px);
+  display:flex; justify-content:space-between; align-items:center;
+  padding:18px 8%; position:fixed; top:0; left:0; z-index:1000;
+  border-bottom:1px solid rgba(255,255,255,0.1); transition:all 0.4s ease;
+}
+header.scrolled { background: rgba(17,25,40,0.95); box-shadow:0 4px 20px rgba(56,189,248,0.35); padding:14px 8%; }
+header .logo { font-size:1rem; font-weight:700; color:#38bdf8; letter-spacing:1px; position:relative; cursor:pointer; }
+header .logo::after { content:''; position:absolute; left:0; bottom:-5px; width:0%; height:3px; background: linear-gradient(90deg, #38bdf8, #a78bfa); border-radius:2px; transition:width 0.4s ease;}
+header .logo:hover::after { width:100%; }
+
+/* Navigation */
+nav .nav-links { display:flex; gap:35px; }
+nav .nav-links li { list-style:none; }
+nav .nav-links li a {
+  color:#f1f5f9; text-decoration:none; font-weight:600; position:relative; padding:5px 0; transition:0.3s;
+}
+nav .nav-links li a::after {
+  content:""; position:absolute; bottom:-5px; left:0; width:0%; height:2px; background:linear-gradient(90deg,#38bdf8,#a78bfa); border-radius:2px; transition:width 0.3s ease;
+}
+nav .nav-links li a:hover::after,
+nav .nav-links li a.active::after { width:100%; }
+nav .nav-links li a:hover { color:#38bdf8; transform:scale(1.05); }
+nav .nav-links li a.active { color:#a78bfa; text-shadow:0 0 8px #38bdf8; }
+
+/* Hamburger */
+.menu-toggle { display:none; font-size:1.6rem; cursor:pointer; color:#38bdf8; transition:transform 0.3s ease; }
+.menu-toggle:hover { transform:rotate(90deg) scale(1.2); }
+
+/* Mobile Responsive */
+@media(max-width:768px){
+  nav .nav-links {
+    position:fixed; top:0; right:-100%; flex-direction:column;
+    background:rgba(17,25,40,0.95); width:220px; height:100vh; padding-top:70px; gap:20px; transition:right 0.4s ease; z-index:999; box-shadow:0 0 15px rgba(56,189,248,0.2);
+  }
+  nav .nav-links.active { right:0; }
+  .menu-toggle { display:block; }
+}
+@media(min-width:769px){ .menu-toggle{display:none;} }
+
+/* ===== SKILLS SECTION ===== */
 .skills {
   padding: 100px 20px 60px;
   text-align: center;
+  flex:1;
 }
 
-.section-title {
-  font-size: 2.8rem;
-  margin-bottom: 10px;
-  color: #38bdf8;
-}
-
-.section-subtitle {
-  font-size: 1.3rem;
-  margin-bottom: 50px;
-  color: #a1a1aa;
-}
+.section-title { font-size: 2.8rem; margin-bottom: 10px; color: #38bdf8; }
+.section-subtitle { font-size: 1.3rem; margin-bottom: 50px; color: #a1a1aa; }
 
 .skills-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 30px;
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
 }
 
@@ -67,7 +78,7 @@ body {
   border: 2px solid rgba(56,189,248,0.2);
   padding: 30px 25px;
   flex: 1 1 250px;
-  max-width: 280px;
+  max-width: 250px;
   text-align: center;
   transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
   box-shadow: 0 8px 20px rgba(0,0,0,0.4);
@@ -79,7 +90,6 @@ body {
   border-color: #38bdf8;
 }
 
-/* ===== Icon Colors + Animation ===== */
 .skill-card i {
   font-size: 2.8rem;
   margin-bottom: 18px;
@@ -87,71 +97,50 @@ body {
   animation: iconPulse 2s infinite alternate;
 }
 
-.skill-card i.fa-code { color: #f97316; }        /* Web Dev - orange */
-.skill-card i.fa-mobile-screen-button { color: #10b981; } /* App - green */
-.skill-card i.fa-pen-nib { color: #f43f5e; }    /* Graphic - red */
-.skill-card i.fa-language { color: #8b5cf6; }   /* Languages - purple */
-.skill-card i.fa-python { color: #306998; }     /* Python - blue */
+.skill-card i.fa-code { color: #f97316; }
+.skill-card i.fa-mobile-screen-button { color: #10b981; }
+.skill-card i.fa-pen-nib { color: #f43f5e; }
+.skill-card i.fa-language { color: #8b5cf6; }
+.skill-card i.fa-python { color: #306998; }
 
-@keyframes iconPulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.15); }
-  100% { transform: scale(1); }
-}
+@keyframes iconPulse { 0%{transform:scale(1);} 50%{transform:scale(1.15);} 100%{transform:scale(1);} }
 
-.skill-card h3 {
-  font-size: 1.5rem;
-  margin-bottom: 12px;
-  color: #ffffff;
-}
+.skill-card h3 { font-size: 1.5rem; margin-bottom: 12px; color: #ffffff; }
+.skill-card p { font-size: 1rem; margin-bottom: 18px; color: #d1d5db; line-height: 1.6; min-height: 60px; }
 
-.skill-card p {
-  font-size: 1rem;
-  margin-bottom: 18px;
-  color: #d1d5db;
-  line-height: 1.6;
-  min-height: 60px;
-}
+.progress-bar { background-color: #374151; height: 10px; border-radius: 10px; overflow: hidden; }
+.progress-bar span { display: block; height: 100%; background: linear-gradient(90deg, #38bdf8, #a78bfa); border-radius: 10px; transition: width 1s ease-in-out; }
 
-/* ===== Progress Bar ===== */
-.progress-bar {
-  background-color: #374151;
-  height: 10px;
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.progress-bar span {
-  display: block;
-  height: 100%;
-  background: linear-gradient(90deg, #38bdf8, #a78bfa);
-  border-radius: 10px;
-  transition: width 1s ease-in-out;
-}
-
-/* ===== Responsive ===== */
-@media (max-width: 900px) {
-  .skills-container {
-    flex-direction: column;
-    align-items: center;
-  }
-}
-
-@media (max-width: 500px) {
-  .skill-card { max-width: 95%; padding: 25px 20px; }
-}
+/* Responsive */
+@media (max-width: 1200px) { .skills-container { flex-wrap: wrap; justify-content: center; } }
+@media (max-width: 900px) { .skills-container { flex-direction: column; align-items: center; } }
+@media (max-width: 500px) { .skill-card { max-width: 95%; padding: 25px 20px; } }
 </style>
 </head>
 <body>
 
-<div id="header"></div>
+<!-- ===== HEADER ===== -->
+<header id="header">
+  <div class="logo">S.M INSATH</div>
+  <nav>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="skills.html" class="active">Skills</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="resume.html">Resume</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="menu-toggle" id="menu-toggle"><i class="fa fa-bars"></i></div>
+  </nav>
+</header>
 
+<!-- ===== SKILLS SECTION ===== -->
 <section class="skills">
   <h2 class="section-title">My Skills</h2>
   <p class="section-subtitle">Here are the key areas I specialize in:</p>
 
   <div class="skills-container">
-
     <div class="skill-card">
       <i class="fa-solid fa-code"></i>
       <h3>Web Development</h3>
@@ -187,10 +176,46 @@ body {
       <div class="progress-bar"><span style="width: 100%;"></span></div>
     </div>
 
+    <div class="skill-card">
+      <i class="fa-solid fa-database"></i>
+      <h3>Database</h3>
+      <p>MySQL and PHPMyAdmin database design and management skills.</p>
+      <div class="progress-bar"><span style="width: 85%;"></span></div>
+    </div>
+
   </div>
 </section>
 
+<!-- ===== FOOTER ===== -->
 <div id="footer"></div>
+
+<script>
+// Mobile Menu Toggle
+const menuToggle = document.getElementById("menu-toggle");
+const navLinks = document.querySelector(".nav-links");
+const header = document.getElementById("header");
+
+menuToggle.addEventListener("click", () => {
+  navLinks.classList.toggle("active");
+  document.body.style.overflow = navLinks.classList.contains("active") ? "hidden" : "auto";
+});
+navLinks.querySelectorAll("a").forEach(link => {
+  link.addEventListener("click", () => {
+    navLinks.classList.remove("active");
+    document.body.style.overflow = "auto";
+  });
+});
+window.addEventListener("scroll", () => {
+  if(window.scrollY > 50){ header.classList.add("scrolled"); } else { header.classList.remove("scrolled"); }
+});
+
+// Load footer dynamically
+document.addEventListener("DOMContentLoaded", () => {
+  fetch("footer.html")
+    .then(res => res.text())
+    .then(data => { document.getElementById("footer").innerHTML = data; });
+});
+</script>
 
 </body>
 </html>
