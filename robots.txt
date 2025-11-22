@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://insath07.github.io/S.M-Insath/sitemap.xml
