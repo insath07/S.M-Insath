@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
   <style>
+    /* ---------- BASIC RESET ---------- */
     * {
       margin: 0;
       padding: 0;
@@ -22,6 +23,7 @@
       min-height: 200vh;
     }
 
+    /* ---------- HEADER ---------- */
     header {
       width: 100%;
       background: rgba(17, 25, 40, 0.75);
@@ -45,7 +47,7 @@
       transform: translateY(-2px);
     }
 
-    /* Logo without photo */
+    /* Logo */
     header .logo {
       font-size: 1.5rem;
       font-weight: 700;
@@ -72,6 +74,7 @@
       width: 100%;
     }
 
+    /* Navigation */
     nav .nav-links {
       display: flex;
       gap: 35px;
@@ -117,6 +120,7 @@
       text-shadow: 0 0 8px #38bdf8;
     }
 
+    /* Hamburger icon */
     .menu-toggle {
       display: none;
       font-size: 1.6rem;
@@ -129,6 +133,7 @@
       transform: rotate(90deg) scale(1.2);
     }
 
+    /* Mobile Responsive */
     @media (max-width: 768px) {
       nav .nav-links {
         position: absolute;
@@ -153,6 +158,14 @@
         display: block;
       }
     }
+
+    /* Ensure hamburger hidden on desktop */
+    @media (min-width: 769px) {
+      .menu-toggle {
+        display: none;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -162,7 +175,7 @@
     <div class="logo">S.M INSATH</div>
 
     <nav>
-      <ul class="nav-links" id="nav-links">
+      <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="skills.html">Skills</a></li>
@@ -181,9 +194,12 @@
     // Mobile Menu Toggle
     const menuToggle = document.getElementById("menu-toggle");
     const navLinks = document.querySelector(".nav-links");
-    menuToggle.addEventListener("click", () => {
-      navLinks.classList.toggle("active");
-    });
+
+    if(menuToggle){
+      menuToggle.addEventListener("click", () => {
+        navLinks.classList.toggle("active");
+      });
+    }
 
     // Scroll Effect
     const header = document.getElementById("header");
@@ -195,12 +211,14 @@
       }
     });
 
-    // Highlight Current Page
-    const currentPage = window.location.pathname.split("/").pop();
+    // Highlight Current Page (GitHub Pages compatible)
     const links = document.querySelectorAll(".nav-links a");
     links.forEach(link => {
       const href = link.getAttribute("href");
-      if (href === currentPage) {
+      const currentPage = window.location.pathname.split("/").pop();
+
+      if ((href === "index.html" && (currentPage === "" || currentPage === "index.html")) ||
+          href === currentPage) {
         link.classList.add("active");
       } else {
         link.classList.remove("active");
@@ -210,3 +228,4 @@
 
 </body>
 </html>
+
