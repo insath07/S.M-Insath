@@ -3,14 +3,151 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HOME| INSATH</title>
-
+  <title>INSATH | Home</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
   <style>
-/* ===== Hero Section ===== */
-.hero { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; padding: 80px 20px; background-color: #0f172a; color: #f8fafc; font-family: "Poppins", sans-serif; }
-body { margin-top: 100px; }
+    /* ---------- BASIC RESET ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+      color: #f8fafc;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+      min-height: 200vh;
+    }
+
+    body { margin-top: 70px; }
+
+    /* ---------- HEADER ---------- */
+    header {
+      width: 100%;
+      background: rgba(17, 25, 40, 0.75);
+      backdrop-filter: blur(15px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 8%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.4s ease;
+    }
+
+    header.scrolled {
+      background: rgba(17, 25, 40, 0.95);
+      box-shadow: 0 4px 20px rgba(56, 189, 248, 0.35);
+      padding: 14px 8%;
+      transform: translateY(-2px);
+    }
+
+    /* Logo */
+    header .logo {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #38bdf8;
+      letter-spacing: 1px;
+      cursor: pointer;
+      position: relative;
+    }
+
+    header .logo::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      width: 0%;
+      height: 3px;
+      background: linear-gradient(90deg, #38bdf8, #a78bfa);
+      border-radius: 2px;
+      transition: width 0.4s ease;
+    }
+
+    header .logo:hover::after { width: 100%; }
+
+    /* Navigation */
+    nav .nav-links {
+      display: flex;
+      gap: 35px;
+    }
+
+    nav .nav-links li { list-style: none; }
+
+    nav .nav-links li a {
+      color: #f1f5f9;
+      text-decoration: none;
+      font-weight: 600;
+      position: relative;
+      transition: 0.3s;
+      padding: 5px 0;
+    }
+
+    nav .nav-links li a::after {
+      content: "";
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: linear-gradient(90deg, #38bdf8, #a78bfa);
+      transition: width 0.3s ease;
+      border-radius: 2px;
+    }
+
+    nav .nav-links li a:hover::after,
+    nav .nav-links li a.active::after { width: 100%; }
+
+    nav .nav-links li a:hover { color: #38bdf8; transform: scale(1.05); }
+    nav .nav-links li a.active { color: #a78bfa; text-shadow: 0 0 8px #38bdf8; }
+
+    /* Hamburger icon */
+    .menu-toggle {
+      display: none;
+      font-size: 1.6rem;
+      cursor: pointer;
+      color: #38bdf8;
+      transition: transform 0.3s ease;
+    }
+
+    .menu-toggle:hover { transform: rotate(90deg) scale(1.2); }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      nav .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        flex-direction: column;
+        background: rgba(17, 25, 40, 0.95);
+        width: 220px;
+        height: 100vh;
+        padding-top: 70px;
+        gap: 20px;
+        transition: right 0.4s ease;
+        box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
+        z-index: 999;
+      }
+
+      nav .nav-links.active { right: 0; }
+
+      .menu-toggle { display: block; }
+    }
+
+    @media (min-width: 769px) { .menu-toggle { display: none; } }
+
+    /* ===== Hero Section ===== */
+    .hero {
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
+      padding: 80px 20px; background-color: #0f172a; color: #f8fafc;
+    }
 
     .hero-content { flex: 1 1 500px; max-width: 600px; text-align: left; }
     .hero-content h1 { font-size: 3rem; margin-bottom: 15px; color: #ffffff; }
@@ -29,10 +166,10 @@ body { margin-top: 100px; }
 
     .btn:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(56, 189, 248, 0.5); }
 
-/* Hero Image */
-.hero-image { position: relative; flex: 1 1 400px; max-width: 450px; text-align: center; }
-.hero-image img { width: 330px; height: 330px; border-radius: 50%; object-fit: cover; border: 4px solid rgba(56,189,248,0.9); box-shadow: 0 12px 30px rgba(0,0,0,0.6), 0 0 30px rgba(56,189,248,0.12); transition: transform 0.35s ease, box-shadow 0.35s ease; }
-.hero-image img:hover { transform: scale(1.03); }
+    /* Hero Image */
+    .hero-image { position: relative; flex: 1 1 40px; max-width: 450px; text-align: center; }
+    .hero-image img { width: 330px; height: 330px; border-radius: 50%; object-fit: cover; border: 4px solid rgba(56,189,248,0.9); box-shadow: 0 12px 30px rgba(0,0,0,0.6), 0 0 30px rgba(56,189,248,0.12); transition: transform 0.35s ease, box-shadow 0.35s ease; }
+    .hero-image img:hover { transform: scale(1.03); }
 
     .profile-orbit { position: absolute; width: 420px; height: 420px; border-radius: 50%; border: 2px dashed rgba(167,139,250,0.18); top: 50%; left: 50%; transform: translate(-50%,-50%); pointer-events: none; animation: rotateOrbit 12s linear infinite; }
     @keyframes rotateOrbit { 0% { transform: translate(-50%,-50%) rotate(0deg); } 100% { transform: translate(-50%,-50%) rotate(360deg); } }
@@ -90,28 +227,35 @@ body { margin-top: 100px; }
 </head>
 <body>
 
-<div id="header"></div>
+  <!-- ===== HEADER ===== -->
+  <header id="header">
+    <div class="logo">S.M INSATH</div>
 
-<section class="hero">
-  <div class="hero-content">
-    <h1>Hello, I'm <span>S.M INSATH</span></h1>
-    <p class="tagline">Web Developer | App Creator | Graphic Designer</p>
-    <p class="intro">I create modern websites, mobile apps, and visual designs that bring ideas to life. Let’s build something amazing together!</p>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="skills.html">Skills</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="resume.html">Resume</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="menu-toggle" id="menu-toggle">
+        <i class="fa fa-bars"></i>
+      </div>
+    </nav>
+  </header>
 
-    <div class="hero-buttons">
-      <a href="projects.html" class="btn">View My Work</a>
-      <a href="contact.html" class="btn secondary">Contact Me</a>
+  <!-- ===== HERO SECTION ===== -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Hello, I'm <span>S.M INSATH</span></h1>
+      <p class="tagline">Web Developer | App Creator | Graphic Designer</p>
+      <p class="intro">I create modern websites, mobile apps, and visual designs that bring ideas to life. Let’s build something amazing together!</p>
+      <div class="hero-buttons">
+        <a href="projects.html" class="btn">View My Work</a>
+      </div>
     </div>
-
-    <div class="social-links">
-      <a href="https://github.com/insath07" target="_blank"><i class="fab fa-github"></i></a>
-      <a href="https://www.linkedin.com/in/mohammed-insath-282153331?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank"><i class="fab fa-linkedin"></i></a>
-      <a href="https://www.instagram.com/s.m_insath?igsh=MWEwN21kNHUwanJlNA==" target="_blank"><i class="fab fa-instagram"></i></a>
-      <a href="https://www.facebook.com/share/1A148RqFuw/" target="_blank"><i class="fab fa-facebook"></i></a>
-      <a href="https://www.tiktok.com/@mhd_insath?_r=1&_t=ZS-91bYsBVT6WL" target="_blank"><i class="fab fa-tiktok"></i></a>
-      <a href="https://wa.me/94776547269" target="_blank"><i class="fab fa-whatsapp"></i></a>
-    </div>
-  </div>
 
     <div class="hero-image">
       <img src="profile04.png" alt="INSATH">
