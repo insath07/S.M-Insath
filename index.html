@@ -3,108 +3,89 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HOME | S.M INSATH</title>
+  <title>HOME| INSATH</title>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      fetch("header.html")
-        .then(res => res.text())
-        .then(data => { document.getElementById("header").innerHTML = data; });
-
-      fetch("footer.html")
-        .then(res => res.text())
-        .then(data => { document.getElementById("footer").innerHTML = data; });
-    });
-  </script>
 
   <style>
 /* ===== Hero Section ===== */
 .hero { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; padding: 80px 20px; background-color: #0f172a; color: #f8fafc; font-family: "Poppins", sans-serif; }
-body { margin-top: 50px; }
+body { margin-top: 100px; }
 
-/* Hero content */
-.hero-content { flex: 1 1 500px; max-width: 600px; text-align: left; }
-.hero-content h1 { font-size: 3rem; margin-bottom: 15px; color: #ffffff; }
-.hero-content h1 span { color: #38bdf8; }
-.hero-content .tagline { font-size: 1.2rem; margin-bottom: 15px; color: #a1a1aa; }
-.hero-content .intro { font-size: 1rem; line-height: 1.8; margin-bottom: 25px; color: #d1d5db; }
-.hero-buttons { display: flex; flex-wrap: wrap; gap: 15px; margin-bottom: 25px; }
+    .hero-content { flex: 1 1 500px; max-width: 600px; text-align: left; }
+    .hero-content h1 { font-size: 3rem; margin-bottom: 15px; color: #ffffff; }
+    .hero-content h1 span { color: #38bdf8; }
+    .hero-content .tagline { font-size: 1.2rem; margin-bottom: 15px; color: #a1a1aa; }
+    .hero-content .intro { font-size: 1rem; line-height: 1.8; margin-bottom: 25px; color: #d1d5db; }
+    .hero-buttons { display: flex; flex-wrap: wrap; gap: 15px; margin-bottom: 25px; }
 
-/* Gradient Buttons */
-.btn { display: inline-block; padding: 12px 30px; border-radius: 8px; text-decoration: none; font-weight: 500; background: linear-gradient(90deg, #38bdf8, #a78bfa); color: #fff; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3); }
-.btn:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(56, 189, 248, 0.5); }
-.btn.secondary { background: linear-gradient(90deg, #6366f1, #a78bfa); }
-.btn.secondary:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5); }
+    .btn {
+      display: inline-block; padding: 12px 30px; border-radius: 8px;
+      text-decoration: none; font-weight: 500;
+      background: linear-gradient(90deg, #38bdf8, #a78bfa);
+      color: #fff; transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3);
+    }
 
-/* Social Links */
-.social-links { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 10px; }
-.social-links a { font-size: 1.6rem; color: #38bdf8; transition: color 0.3s, transform 0.3s; }
-.social-links a:hover { color: #a78bfa; transform: translateY(-4px); }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(56, 189, 248, 0.5); }
 
 /* Hero Image */
-.hero-image { position: relative; flex: 1 1 40px; max-width: 450px; text-align: center; }
+.hero-image { position: relative; flex: 1 1 400px; max-width: 450px; text-align: center; }
 .hero-image img { width: 330px; height: 330px; border-radius: 50%; object-fit: cover; border: 4px solid rgba(56,189,248,0.9); box-shadow: 0 12px 30px rgba(0,0,0,0.6), 0 0 30px rgba(56,189,248,0.12); transition: transform 0.35s ease, box-shadow 0.35s ease; }
 .hero-image img:hover { transform: scale(1.03); }
 
-/* ===== Redesigned Skill Icons ===== */
-.skill-icon {
-  position: absolute;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #fff;
-  font-size: 26px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
-  transition: transform 0.3s ease;
-}
-.skill-icon:hover { transform: scale(1.2) rotate(10deg); }
+    .profile-orbit { position: absolute; width: 420px; height: 420px; border-radius: 50%; border: 2px dashed rgba(167,139,250,0.18); top: 50%; left: 50%; transform: translate(-50%,-50%); pointer-events: none; animation: rotateOrbit 12s linear infinite; }
+    @keyframes rotateOrbit { 0% { transform: translate(-50%,-50%) rotate(0deg); } 100% { transform: translate(-50%,-50%) rotate(360deg); } }
 
-/* Individual Colors and New Positions */
-.icon-html { background: #e34c26; top: -20px; left: 50%; transform: translateX(-50%); }
-.icon-react { background: #38bdf8; top: 40%; right: -25px; }
-.icon-java { background: #f89820; bottom: -20px; left: 40%; }
-.icon-python { background: #306998; bottom: 20px; right: 40px; }
+    /* Skill icons */
+    .skill-icon {
+      position: absolute; width: 60px; height: 60px; border-radius: 50%;
+      display: flex; justify-content: center; align-items: center;
+      color: #fff; font-size: 26px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+      transition: transform 0.3s ease;
+    }
 
-/* Optional subtle glow effect */
-.skill-icon::after {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  box-shadow: 0 0 15px rgba(255,255,255,0.2);
-  opacity: 0.6;
-  animation: glow 2s infinite alternate;
-}
-@keyframes glow {
-  0% { transform: scale(1); opacity: 0.5; }
-  100% { transform: scale(1.2); opacity: 0.8; }
-}
+    .skill-icon:hover { transform: scale(1.2) rotate(10deg); }
 
-/* Rotating dashed orbit */
-.profile-orbit { position: absolute; width: 420px; height: 420px; border-radius: 50%; border: 2px dashed rgba(167,139,250,0.18); top: 50%; left: 50%; transform: translate(-50%,-50%); pointer-events: none; animation: rotateOrbit 12s linear infinite; }
-@keyframes rotateOrbit { 0% { transform: translate(-50%,-50%) rotate(0deg); } 100% { transform: translate(-50%,-50%) rotate(360deg); } }
+    .icon-html { background: #e34c26; top: -20px; left: 50%; transform: translateX(-50%); }
+    .icon-react { background: #38bdf8; top: 40%; right: -25px; }
+    .icon-java { background: #f89820; bottom: -20px; left: 40%; }
+    .icon-python { background: #306998; bottom: 20px; right: 40px; }
 
-/* Responsive */
-@media (max-width: 900px) {
-  .hero { flex-direction: column-reverse; text-align: center; gap: 30px; }
-  .hero-content { text-align: center; }
-  .hero-buttons { justify-content: center; }
-  .social-links { justify-content: center; }
-  .hero-image img { width: 260px; height: 260px; }
-  .profile-orbit { width: 330px; height: 330px; }
-  .skill-icon { width: 50px; height: 50px; font-size: 22px; }
-}
-@media (max-width: 500px) {
-  .hero-content h1 { font-size: 2rem; }
-  .hero-content .tagline { font-size: 1rem; }
-  .hero-content .intro { font-size: 0.95rem; }
-}
+    /* Responsive */
+    @media (max-width: 900px) {
+      .hero { flex-direction: column-reverse; text-align: center; gap: 30px; }
+      .hero-content { text-align: center; }
+      .hero-buttons { justify-content: center; }
+      .hero-image img { width: 260px; height: 260px; }
+      .profile-orbit { width: 330px; height: 330px; }
+      .skill-icon { width: 50px; height: 50px; font-size: 22px; }
+    }
+
+    @media (max-width: 500px) {
+      .hero-content h1 { font-size: 2rem; }
+      .hero-content .tagline { font-size: 1rem; }
+      .hero-content .intro { font-size: 0.95rem; }
+    }
+
+    /* ---------- FOOTER ---------- */
+    footer {
+      background: rgba(17,25,40,0.95);
+      text-align: center;
+      padding: 25px 10px;
+      color: #a1a1aa;
+      font-size: 0.95rem;
+      border-top: 1px solid rgba(56,189,248,0.2);
+    }
+
+    footer a {
+      color: #38bdf8;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    footer a:hover { color: #a78bfa; }
   </style>
 </head>
 <body>
@@ -119,24 +100,89 @@ body { margin-top: 50px; }
 
     <div class="hero-buttons">
       <a href="projects.html" class="btn">View My Work</a>
-      
+      <a href="contact.html" class="btn secondary">Contact Me</a>
     </div>
 
+    <div class="social-links">
+      <a href="https://github.com/insath07" target="_blank"><i class="fab fa-github"></i></a>
+      <a href="https://www.linkedin.com/in/mohammed-insath-282153331?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank"><i class="fab fa-linkedin"></i></a>
+      <a href="https://www.instagram.com/s.m_insath?igsh=MWEwN21kNHUwanJlNA==" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.facebook.com/share/1A148RqFuw/" target="_blank"><i class="fab fa-facebook"></i></a>
+      <a href="https://www.tiktok.com/@mhd_insath?_r=1&_t=ZS-91bYsBVT6WL" target="_blank"><i class="fab fa-tiktok"></i></a>
+      <a href="https://wa.me/94776547269" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    </div>
   </div>
 
-  <div class="hero-image">
-    <img src="profile04.png" alt="INSATH">
-    <div class="profile-orbit"></div>
+    <div class="hero-image">
+      <img src="profile04.png" alt="INSATH">
+      <div class="profile-orbit"></div>
 
-    <!-- Redesigned skill icons only -->
-    <div class="skill-icon icon-html" title="HTML5"><i class="fab fa-html5"></i></div>
-    <div class="skill-icon icon-react" title="React"><i class="fab fa-react"></i></div>
-    <div class="skill-icon icon-java" title="Java"><i class="fab fa-java"></i></div>
-    <div class="skill-icon icon-python" title="Python"><i class="fab fa-python"></i></div>
-  </div>
-</section>
+      <div class="skill-icon icon-html" title="HTML5"><i class="fab fa-html5"></i></div>
+      <div class="skill-icon icon-react" title="React"><i class="fab fa-react"></i></div>
+      <div class="skill-icon icon-java" title="Java"><i class="fab fa-java"></i></div>
+      <div class="skill-icon icon-python" title="Python"><i class="fab fa-python"></i></div>
+    </div>
+  </section>
 
-<div id="footer"></div>
+  <!-- ===== FOOTER PLACEHOLDER ===== -->
+  <div id="footer-placeholder"></div>
+
+  <script>
+    // Load footer dynamically
+    fetch('footer.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('footer-placeholder').innerHTML = data;
+      })
+      .catch(err => console.error('Error loading footer:', err));
+  </script>
+
+  <script>
+    const menuToggle = document.getElementById("menu-toggle");
+    const navLinks = document.querySelector(".nav-links");
+    const header = document.getElementById("header");
+
+    // Mobile Menu Toggle
+    menuToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+      if(navLinks.classList.contains("active")){
+        document.body.style.overflow = "hidden";
+      } else {
+        document.body.style.overflow = "auto";
+      }
+    });
+
+    // Close menu when clicking a link
+    navLinks.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("active");
+        document.body.style.overflow = "auto";
+      });
+    });
+
+    // Scroll Effect
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 50) {
+        header.classList.add("scrolled");
+      } else {
+        header.classList.remove("scrolled");
+      }
+    });
+
+    // Highlight Current Page
+    const links = document.querySelectorAll(".nav-links a");
+    links.forEach(link => {
+      const href = link.getAttribute("href");
+      const currentPage = window.location.pathname.split("/").pop();
+
+      if ((href === "index.html" && (currentPage === "" || currentPage === "index.html")) ||
+          href === currentPage) {
+        link.classList.add("active");
+      } else {
+        link.classList.remove("active");
+      }
+    });
+  </script>
 
 </body>
 </html>
