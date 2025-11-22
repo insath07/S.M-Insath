@@ -3,98 +3,91 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Resume | S.M INSATH </title>
+<title>Resume | S.M INSATH</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  fetch("header.html")
-    .then(res => res.text())
-    .then(data => {
-      document.getElementById("header").innerHTML = data;
-      const menuToggle = document.getElementById('menu-toggle');
-      const navLinks = document.querySelector('.nav-links');
-      if (menuToggle) menuToggle.addEventListener('click', () => navLinks.classList.toggle('show'));
-    });
-
-  fetch("footer.html")
-    .then(res => res.text())
-    .then(data => document.getElementById("footer").innerHTML = data);
-});
-</script>
-
 <style>
-body {
-  margin: 0;
-  padding-top: 90px;
-  background-color: #0f172a;
-  font-family: "Poppins", sans-serif;
-  color: #f8fafc;
-}
+/* ---------- BASIC RESET ---------- */
+* { margin:0; padding:0; box-sizing:border-box; font-family:"Poppins", sans-serif; }
+body { background:#0f172a; color:#f8fafc; line-height:1.6; margin-top:80px; scroll-behavior:smooth; }
 
-/* ===== Resume Section ===== */
-.resume {
-  padding: 35px 15px;
-  text-align: center;
+/* ---------- HEADER ---------- */
+header {
+  width:100%; background: rgba(17,25,40,0.75); backdrop-filter:blur(15px);
+  display:flex; justify-content:space-between; align-items:center;
+  padding:18px 8%; position:fixed; top:0; left:0; z-index:1000;
+  border-bottom:1px solid rgba(255,255,255,0.1); transition:all 0.4s ease;
 }
+header.scrolled { background: rgba(17,25,40,0.95); box-shadow:0 4px 20px rgba(56,189,248,0.35); padding:14px 8%; }
+header .logo { font-size:1rem; font-weight:700; color:#38bdf8; letter-spacing:1px; position:relative; cursor:pointer; }
+header .logo::after { content:''; position:absolute; left:0; bottom:-5px; width:0%; height:3px; background: linear-gradient(90deg, #38bdf8,#a78bfa); border-radius:2px; transition:width 0.4s ease;}
+header .logo:hover::after { width:100%; }
 
-.section-title {
-  font-size: 1.9rem;
-  margin-bottom: 6px;
-  color: #38bdf8;
-  font-weight: 600;
+/* Navigation */
+nav .nav-links { display:flex; gap:35px; }
+nav .nav-links li { list-style:none; }
+nav .nav-links li a {
+  color:#f1f5f9; text-decoration:none; font-weight:600; position:relative; padding:5px 0; transition:0.3s;
 }
-
-.section-subtitle {
-  font-size: 0.95rem;
-  margin-bottom: 20px;
-  color: #a1a1aa;
+nav .nav-links li a::after {
+  content:""; position:absolute; bottom:-5px; left:0; width:0%; height:2px; background:linear-gradient(90deg,#38bdf8,#a78bfa); border-radius:2px; transition:width 0.3s ease;
 }
+nav .nav-links li a:hover::after,
+nav .nav-links li a.active::after { width:100%; }
+nav .nav-links li a:hover { color:#38bdf8; transform:scale(1.05); }
+nav .nav-links li a.active { color:#a78bfa; text-shadow:0 0 8px #38bdf8; }
 
-/* Container: iframe + buttons */
-.resume-card {
+/* Hamburger */
+.menu-toggle { display:none; font-size:1.6rem; cursor:pointer; color:#38bdf8; transition:transform 0.3s ease; }
+.menu-toggle:hover { transform:rotate(90deg) scale(1.2); }
+
+/* Mobile Responsive */
+@media(max-width:768px){
+  nav .nav-links {
+    position:fixed; top:0; right:-100%; flex-direction:column;
+    background:rgba(17,25,40,0.95); width:220px; height:100vh; padding-top:70px; gap:20px; transition:right 0.4s ease; z-index:999; box-shadow:0 0 15px rgba(56,189,248,0.2);
+  }
+  nav .nav-links.active { right:0; }
+  .menu-toggle { display:block; }
+}
+@media(min-width:769px){ .menu-toggle{display:none;} }
+
+/* ===== SECTIONS ===== */
+.section-title { font-size: 1.9rem; margin-bottom: 6px; color: #38bdf8; font-weight: 600; text-align:center; }
+.section-subtitle { font-size: 0.95rem; margin-bottom: 20px; color: #a1a1aa; text-align:center; }
+
+/* ===== RESUME CARD ===== */
+.card {
   background: #1e293b;
-  border-radius: 12px;
-  border: 2px solid rgba(56,189,248,0.25);
-  max-width: 750px;
-  margin: 0 auto;
-  padding: 12px;
-  display: flex;
-  flex-direction: row; /* horizontal layout */
-  align-items: center; /* vertically center buttons */
-  gap: 15px;
+  border-radius: 15px;
+  border: 1px solid rgba(56,189,248,0.25);
+  max-width: 500px;
+  margin: 0 auto 40px;
+  padding: 15px;
+  text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
-
-.resume-card:hover {
+.card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.4);
   border-color: #38bdf8;
 }
 
-/* Resume iframe */
-.resume-card iframe {
-  width: 500px;
-  height: 400px;
-  border: none;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+.card img { 
+  max-width: 100%; 
+  height: 220px; 
+  object-fit: cover; 
+  border-radius: 12px;
+  margin-bottom: 12px;
 }
 
-/* Buttons vertical on right */
-.resume-actions {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  justify-content: center; /* vertically center buttons */
-}
-
-.resume-actions .btn {
-  display: flex;
+/* Buttons */
+.btn {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 6px;
-  padding: 10px 18px;
+  padding: 8px 18px;
   border-radius: 6px;
   text-decoration: none;
   font-weight: 500;
@@ -103,73 +96,155 @@ body {
   font-size: 0.85rem;
   transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
 }
+.btn.secondary { background-color: #6b7280; }
+.btn:hover { background-color:#1d4ed8; transform:translateY(-1px); box-shadow:0 3px 8px rgba(0,0,0,0.4); }
+.btn.secondary:hover { background-color:#4b5563; }
 
-.resume-actions .btn.secondary {
-  background-color: #6b7280;
+/* ===== CERTIFICATES ===== */
+.cert-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
 }
-
-.resume-actions .btn:hover {
-  background-color: #1d4ed8;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+.cert-card {
+  background: #1e293b;
+  border-radius: 12px;
+  border: 1px solid rgba(56,189,248,0.25);
+  width: 250px;
+  padding: 12px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
-
-.resume-actions .btn.secondary:hover {
-  background-color: #4b5563;
+.cert-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+  border-color: #38bdf8;
 }
+.cert-card img { width: 100%; height: 150px; object-fit: cover; border-radius: 10px; margin-bottom: 10px; }
+.cert-card h3 { font-size: 1rem; color:#38bdf8; margin-bottom:4px; }
+.cert-card p { font-size: 0.85rem; color:#d1d5db; margin-bottom:8px; }
 
 /* Responsive */
-@media (max-width: 900px) {
-  .resume-card {
-    flex-direction: column; /* stack on small screens */
-    align-items: center;
-  }
-  .resume-card iframe {
-    width: 90%;
-    height: 300px;
-  }
-  .resume-actions {
-    flex-direction: row;
-    width: 100%;
-    justify-content: center;
-  }
-  .resume-actions .btn {
-    flex: 1 1 45%;
-  }
-}
-
-@media (max-width: 500px) {
-  .section-title {
-    font-size: 1.6rem;
-  }
-  .section-subtitle {
-    font-size: 0.85rem;
-  }
-  .resume-actions .btn {
-    flex: 1 1 100%;
-  }
-}
+@media(max-width:900px){ .cert-container { gap:15px; } }
+@media(max-width:500px){ .card img { height:180px; } .cert-card { width:90%; } }
 </style>
 </head>
-
 <body>
 
-<div id="header"></div>
+<!-- ===== HEADER ===== -->
+<header id="header">
+  <div class="logo">S.M INSATH</div>
+  <nav>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="skills.html">Skills</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="resume.html" class="active">Resume & Certificates</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="menu-toggle" id="menu-toggle"><i class="fa fa-bars"></i></div>
+  </nav>
+</header>
 
+<!-- ===== RESUME SECTION ===== -->
 <section class="resume">
   <h2 class="section-title">My Resume</h2>
-  <p class="section-subtitle">View or download my professional resume</p>
+  <p class="section-subtitle">Click below to view or download my professional resume</p>
 
-  <div class="resume-card">
-    <iframe src="Insath Resume.pdf" title="S.m Insath Resume"></iframe>
-    <div class="resume-actions">
-      <a href="Insath Resume.pdf" target="_blank" class="btn"><i class="fa-solid fa-eye"></i> View</a>
-      <a href="Insath Resume.pdf" download class="btn secondary"><i class="fa-solid fa-download"></i> Download</a>
+  <div class="card">
+    <img src="22.png" alt="Resume Thumbnail">
+    <div>
+      <a href="Insath Resume.pdf" target="_blank" class="btn"><i class="fa-solid fa-eye"></i> View Resume</a>
+      <a href="Insath Resume.pdf" download class="btn secondary"><i class="fa-solid fa-download"></i> Download Resume</a>
     </div>
   </div>
 </section>
 
-<div id="footer"></div>
+<!-- ===== CERTIFICATES SECTION ===== -->
+<section class="certificates">
+  <h2 class="section-title">Certificates</h2>
+  <p class="section-subtitle">Completed courses & certifications</p>
+
+  <div class="cert-container">
+    <div class="cert-card">
+      <img src="certificate-placeholder.png" alt="Networking Course - Cisco">
+      <h3>Networking Course</h3>
+      <p>Cisco</p>
+      <a href="Networking-Cisco.pdf" target="_blank" class="btn"><i class="fa-solid fa-eye"></i> View Certificate</a>
+    </div>
+    <div class="cert-card">
+      <img src="certificate-placeholder.png" alt="Python Course - Cisco">
+      <h3>Python Course</h3>
+      <p>Cisco</p>
+      <a href="Python-Cisco.pdf" target="_blank" class="btn"><i class="fa-solid fa-eye"></i> View Certificate</a>
+    </div>
+    <div class="cert-card">
+      <img src="certificate-placeholder.png" alt="AI Course - Skill Learn Up">
+      <h3>AI Course</h3>
+      <p>Skill Learn Up</p>
+      <a href="AI-SkillLearnUp.pdf" target="_blank" class="btn"><i class="fa-solid fa-eye"></i> View Certificate</a>
+    </div>
+    <div class="cert-card">
+      <img src="certificate-placeholder.png" alt="Cisco Packet Tracer Training">
+      <h3>Cisco Packet Tracer Training</h3>
+      <p>Cisco</p>
+      <a href="PacketTracer-Cisco.pdf" target="_blank" class="btn"><i class="fa-solid fa-eye"></i> View Certificate</a>
+    </div>
+    <div class="cert-card">
+      <img src="certificate-placeholder.png" alt="Software Engineering Basics - IBM">
+      <h3>Software Engineering Basics</h3>
+      <p>IBM</p>
+      <a href="Software-IBM.pdf" target="_blank" class="btn"><i class="fa-solid fa-eye"></i> View Certificate</a>
+    </div>
+    <div class="cert-card">
+      <img src="certificate-placeholder.png" alt="Cyber Security Basics - IBM">
+      <h3>Cyber Security Basics</h3>
+      <p>IBM</p>
+      <a href="CyberSecurity-IBM.pdf" target="_blank" class="btn"><i class="fa-solid fa-eye"></i> View Certificate</a>
+    </div>
+    <div class="cert-card">
+      <img src="certificate-placeholder.png" alt="IoT Course - Cisco">
+      <h3>IoT Course</h3>
+      <p>Cisco</p>
+      <a href="IoT-Cisco.pdf" target="_blank" class="btn"><i class="fa-solid fa-eye"></i> View Certificate</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER PLACEHOLDER ===== -->
+<div id="footer-container"></div>
+
+<script>
+// Mobile Menu Toggle
+const menuToggle = document.getElementById("menu-toggle");
+const navLinks = document.querySelector(".nav-links");
+const header = document.getElementById("header");
+
+menuToggle.addEventListener("click", () => {
+  navLinks.classList.toggle("active");
+  document.body.style.overflow = navLinks.classList.contains("active") ? "hidden" : "auto";
+});
+navLinks.querySelectorAll("a").forEach(link => {
+  link.addEventListener("click", () => {
+    navLinks.classList.remove("active");
+    document.body.style.overflow = "auto";
+  });
+});
+
+// Scroll Effect
+window.addEventListener("scroll", () => {
+  if(window.scrollY > 50){ header.classList.add("scrolled"); } else { header.classList.remove("scrolled"); }
+});
+
+// Load footer dynamically
+fetch('footer.html')
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById('footer-container').innerHTML = data;
+  });
+</script>
 
 </body>
 </html>
