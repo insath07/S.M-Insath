@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
   <style>
+    /* ---------- BASIC RESET ---------- */
     * {
       margin: 0;
       padding: 0;
@@ -15,104 +16,138 @@
     }
 
     body {
-      background: #0f172a;
-      color: #fff;
+      background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+      color: #f8fafc;
+      line-height: 1.6;
+      scroll-behavior: smooth;
       min-height: 200vh;
     }
 
-    /* HEADER */
+    /* ---------- HEADER ---------- */
     header {
       width: 100%;
       background: rgba(17, 25, 40, 0.75);
       backdrop-filter: blur(15px);
-      padding: 18px 8%;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      padding: 18px 8%;
       position: fixed;
       top: 0;
       left: 0;
       z-index: 1000;
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      transition: 0.4s ease;
+      transition: all 0.4s ease;
     }
 
     header.scrolled {
       background: rgba(17, 25, 40, 0.95);
-      padding: 14px 8%;
       box-shadow: 0 4px 20px rgba(56, 189, 248, 0.35);
+      padding: 14px 8%;
+      transform: translateY(-2px);
     }
 
-    /* LOGO */
-    .logo {
+    /* Logo */
+    header .logo {
       font-size: 1.5rem;
       font-weight: 700;
       color: #38bdf8;
+      letter-spacing: 1px;
       cursor: pointer;
+      transition: all 0.3s ease;
       position: relative;
     }
 
-    .logo::after {
+    header .logo::after {
       content: '';
       position: absolute;
-      width: 0%;
-      height: 3px;
       left: 0;
       bottom: -5px;
+      width: 0%;
+      height: 3px;
       background: linear-gradient(90deg, #38bdf8, #a78bfa);
-      transition: 0.3s ease;
+      border-radius: 2px;
+      transition: width 0.4s ease;
     }
 
-    .logo:hover::after {
+    header .logo:hover::after {
       width: 100%;
     }
 
+    /* Navigation */
     nav .nav-links {
       display: flex;
       gap: 35px;
+    }
+
+    nav .nav-links li {
       list-style: none;
     }
 
     nav .nav-links li a {
-      color: #fff;
+      color: #f1f5f9;
       text-decoration: none;
       font-weight: 600;
       position: relative;
+      transition: 0.3s;
       padding: 5px 0;
-      transition: 0.3s ease;
+    }
+
+    nav .nav-links li a::after {
+      content: "";
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: linear-gradient(90deg, #38bdf8, #a78bfa);
+      transition: width 0.3s ease;
+      border-radius: 2px;
+    }
+
+    nav .nav-links li a:hover::after,
+    nav .nav-links li a.active::after {
+      width: 100%;
     }
 
     nav .nav-links li a:hover {
       color: #38bdf8;
+      transform: scale(1.05);
     }
 
     nav .nav-links li a.active {
       color: #a78bfa;
+      text-shadow: 0 0 8px #38bdf8;
     }
 
-    /* MOBILE TOGGLE */
+    /* Hamburger icon */
     .menu-toggle {
       display: none;
-      font-size: 1.8rem;
-      color: #38bdf8;
+      font-size: 1.6rem;
       cursor: pointer;
+      color: #38bdf8;
+      transition: transform 0.3s ease;
     }
 
-    /* MOBILE MENU */
+    .menu-toggle:hover {
+      transform: rotate(90deg) scale(1.2);
+    }
+
+    /* Mobile Responsive */
     @media (max-width: 768px) {
       nav .nav-links {
-        position: fixed;
-        top: 0;
-        right: -280px;
-        width: 260px;
-        height: 100vh;
-        background: rgba(17, 25, 40, 0.97);
+        position: absolute;
+        top: 70px;
+        right: -100%;
         flex-direction: column;
-        padding-top: 90px;
-        gap: 25px;
-        padding-left: 25px;
-        transition: 0.4s ease;
-        border-left: 1px solid rgba(255, 255, 255, 0.15);
+        background: rgba(17, 25, 40, 0.95);
+        width: 220px;
+        height: calc(100vh - 70px);
+        padding-top: 30px;
+        gap: 20px;
+        transition: right 0.4s ease;
+        box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
+        border-radius: 0 0 10px 0;
       }
 
       nav .nav-links.active {
@@ -123,16 +158,24 @@
         display: block;
       }
     }
+
+    /* Ensure hamburger hidden on desktop */
+    @media (min-width: 769px) {
+      .menu-toggle {
+        display: none;
+      }
+    }
+
   </style>
 </head>
 <body>
 
-  <!-- HEADER -->
+  <!-- ===== HEADER ===== -->
   <header id="header">
     <div class="logo">S.M INSATH</div>
 
     <nav>
-      <ul class="nav-links" id="navLinks">
+      <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="skills.html">Skills</a></li>
@@ -140,42 +183,46 @@
         <li><a href="resume.html">Resume</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
-
-      <div class="menu-toggle" id="menuToggle">
+      <div class="menu-toggle" id="menu-toggle">
         <i class="fa fa-bars"></i>
       </div>
     </nav>
   </header>
 
-  <!-- SCRIPT -->
+  <!-- ===== SCRIPT ===== -->
   <script>
-    const menuToggle = document.getElementById("menuToggle");
-    const navLinks = document.getElementById("navLinks");
+    // Mobile Menu Toggle
+    const menuToggle = document.getElementById("menu-toggle");
+    const navLinks = document.querySelector(".nav-links");
 
-    menuToggle.addEventListener("click", () => {
-      navLinks.classList.toggle("active");
-    });
-
-    // Close menu when clicking any link
-    const allLinks = document.querySelectorAll(".nav-links a");
-    allLinks.forEach(link => {
-      link.addEventListener("click", () => {
-        navLinks.classList.remove("active");
+    if(menuToggle){
+      menuToggle.addEventListener("click", () => {
+        navLinks.classList.toggle("active");
       });
-    });
+    }
 
-    // Highlight current page
-    const currentPage = window.location.pathname.split("/").pop();
-    allLinks.forEach(link => {
-      if (link.getAttribute("href") === currentPage) {
-        link.classList.add("active");
+    // Scroll Effect
+    const header = document.getElementById("header");
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 50) {
+        header.classList.add("scrolled");
+      } else {
+        header.classList.remove("scrolled");
       }
     });
 
-    // Header scroll effect
-    const header = document.getElementById("header");
-    window.addEventListener("scroll", () => {
-      header.classList.toggle("scrolled", window.scrollY > 50);
+    // Highlight Current Page (GitHub Pages compatible)
+    const links = document.querySelectorAll(".nav-links a");
+    links.forEach(link => {
+      const href = link.getAttribute("href");
+      const currentPage = window.location.pathname.split("/").pop();
+
+      if ((href === "index.html" && (currentPage === "" || currentPage === "index.html")) ||
+          href === currentPage) {
+        link.classList.add("active");
+      } else {
+        link.classList.remove("active");
+      }
     });
   </script>
 
