@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | Insath Portfolio</title>
+  <script src="script.js" defer></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      fetch("header.html")
+        .then(res => res.text())
+        .then(data => {
+          document.getElementById("header").innerHTML = data;
+          const menuToggle = document.getElementById('menu-toggle');
+          const navLinks = document.querySelector('.nav-links');
+          if (menuToggle) menuToggle.addEventListener('click', () => navLinks.classList.toggle('show'));
+        });
+
+      fetch("footer.html")
+        .then(res => res.text())
+        .then(data => {
+          document.getElementById("footer").innerHTML = data;
+        });
+    });
+  </script>
+
+  <style>
+    body {
+      margin-top: 100px;
+      background-color: #0f172a;
+      font-family: "Poppins", sans-serif;
+      color: #f8fafc;
+    }
+
+    .contact {
+      padding: 80px 20px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 80vh;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      color: #38bdf8; /* blue color now */
+    }
+
+    .section-subtitle {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      color: #a1a1aa;
+    }
+
+    .google-form {
+      width: 100%;
+      max-width: 500px;
+      background: rgba(255, 255, 255, 0.07);
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
+      padding: 15px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+      animation: fadeIn 1s ease-in-out;
+      transition: transform 0.3s ease;
+    }
+
+    .google-form:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.45);
+    }
+
+    iframe {
+      width: 100%;
+      height: 450px;
+      border: none;
+      border-radius: 15px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 700px) {
+      .section-title { font-size: 2rem; }
+      .section-subtitle { font-size: 1rem; }
+      iframe { height: 400px; }
+    }
+
+    @media (max-width: 500px) {
+      .google-form { max-width: 90%; padding: 10px; }
+      iframe { height: 350px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="header"></div>
+
+  <section class="contact">
+    <h2 class="section-title">Get In Touch</h2>
+    <p class="section-subtitle">Send me a message through this form ✨</p>
+
+    <div class="google-form">
+      <iframe 
+        src="https://docs.google.com/forms/d/e/1FAIpQLSfSx9vscpY9Evq87j1sN4TwrtYrr-koZ6tZj85SJ8nLChzd4w/viewform?usp=header" 
+        frameborder="0" 
+        marginheight="0" 
+        marginwidth="0">
+        Loading…
+      </iframe>
+    </div>
+  </section>
+
+  <div id="footer"></div>
+</body>
+</html>

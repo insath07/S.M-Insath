@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Footer Section | INSATH Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <style>
+    /* ---------- BASIC RESET ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+      color: #f1f5f9;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* ---------- FOOTER ---------- */
+    footer {
+      background: rgba(17, 25, 40, 0.8);
+      backdrop-filter: blur(15px);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      margin-top: auto;
+      padding: 50px 8%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Neon glowing gradient border */
+    footer::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -50%;
+      width: 200%;
+      height: 2px;
+      background: linear-gradient(90deg, #38bdf8, #a78bfa, #f472b6, #38bdf8);
+      background-size: 400%;
+      animation: glowLine 6s linear infinite;
+    }
+
+    @keyframes glowLine {
+      0% { background-position: 0% }
+      100% { background-position: 400% }
+    }
+
+    /* ---------- FOOTER CONTENT ---------- */
+    .footer-col {
+      flex: 1;
+      min-width: 250px;
+    }
+
+    .footer-col h3 {
+      font-size: 1.4rem;
+      margin-bottom: 20px;
+      color: #38bdf8;
+      position: relative;
+    }
+
+    .footer-col h3::after {
+      content: "";
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background: linear-gradient(90deg, #38bdf8, #a78bfa);
+      border-radius: 2px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col ul li {
+      margin-bottom: 12px;
+    }
+
+    .footer-col ul li a {
+      color: #e2e8f0;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .footer-col ul li a:hover {
+      color: #38bdf8;
+      padding-left: 6px;
+    }
+
+    /* ---------- ABOUT BUTTON ---------- */
+    .about-btn {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 8px 18px;
+      background: linear-gradient(90deg, #38bdf8, #a78bfa);
+      color: #fff;
+      border: none;
+      border-radius: 25px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      transition: 0.3s ease;
+    }
+
+    .about-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 10px #38bdf8;
+    }
+
+    /* ---------- SOCIAL LINKS ---------- */
+    .social-links a {
+      color: #38bdf8;
+      font-size: 1.4rem;
+      margin-right: 18px;
+      transition: 0.3s;
+    }
+
+    .social-links a:hover {
+      color: #a78bfa;
+      transform: scale(1.2);
+    }
+
+    /* ---------- COPYRIGHT ---------- */
+    .footer-bottom {
+      width: 100%;
+      text-align: center;
+      padding-top: 30px;
+      margin-top: 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.95rem;
+      color: #94a3b8;
+      letter-spacing: 0.5px;
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 768px) {
+      footer {
+        flex-direction: column;
+        text-align: center;
+      }
+      .social-links { margin-top: 15px; }
+      .footer-col h3::after { left: 50%; transform: translateX(-50%); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ======= FOOTER SECTION ======= -->
+  <footer>
+    <div class="footer-col">
+      <h3>About Me</h3>
+      <p>Hi, I'm <b>Insath</b> — a creative web developer passionate about design, animation & digital experiences. Let's build something amazing together!</p>
+      <a href="about.html" class="about-btn">About</a>
+    </div>
+
+    <div class="footer-col">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="skills.html">Skills</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h3>Contact Info</h3>
+      <ul>
+        <li>
+          <a href="mailto:mohammedimmmu678@gmail.com"><i class="fa fa-envelope"></i> mohammedimmmu678@gmail.com</a>
+        </li>
+        <li>
+          <a href="tel:+94776547269"><i class="fa fa-phone"></i> +94 776547269</a>
+        </li>
+        <li>
+          <a href="https://www.google.com/maps?q=akresseye,horowopthana,Anuradhpure,Sri+Lanka" target="_blank">
+            <i class="fa fa-map-marker-alt"></i> akresseye, horowopthana, Anuradhpure, Sri Lanka
+          </a>
+        </li>
+      </ul>
+      <div class="social-links">
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-github"></i></a>
+        <a href="#"><i class="fab fa-linkedin"></i></a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      &copy; <span id="year"></span> <b>INSATH</b> | All Rights Reserved 🌙
+    </div>
+  </footer>
+
+  <script>
+    // Dynamic Year Update
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>

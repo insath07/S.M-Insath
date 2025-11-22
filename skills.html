@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skills | INSATH Portfolio</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  // Load Header
+  fetch("header.html").then(res => res.text()).then(data => {
+    document.getElementById("header").innerHTML = data;
+    const menuToggle = document.getElementById('menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    if (menuToggle) {
+      menuToggle.addEventListener('click', () => navLinks.classList.toggle('show'));
+    }
+  });
+
+  // Load Footer
+  fetch("footer.html").then(res => res.text()).then(data => {
+    document.getElementById("footer").innerHTML = data;
+  });
+});
+</script>
+
+<style>
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background-color: #0f172a;
+  color: #f8fafc;
+}
+
+/* ===== Skills Section ===== */
+.skills {
+  padding: 100px 20px 60px;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 2.8rem;
+  margin-bottom: 10px;
+  color: #38bdf8;
+}
+
+.section-subtitle {
+  font-size: 1.3rem;
+  margin-bottom: 50px;
+  color: #a1a1aa;
+}
+
+.skills-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ===== Skill Card ===== */
+.skill-card {
+  background: linear-gradient(145deg, #1e293b, #111827);
+  border-radius: 20px;
+  border: 2px solid rgba(56,189,248,0.2);
+  padding: 30px 25px;
+  flex: 1 1 250px;
+  max-width: 280px;
+  text-align: center;
+  transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+}
+
+.skill-card:hover {
+  transform: translateY(-7px) scale(1.03);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+  border-color: #38bdf8;
+}
+
+/* ===== Icon Colors + Animation ===== */
+.skill-card i {
+  font-size: 2.8rem;
+  margin-bottom: 18px;
+  display: inline-block;
+  animation: iconPulse 2s infinite alternate;
+}
+
+.skill-card i.fa-code { color: #f97316; }        /* Web Dev - orange */
+.skill-card i.fa-mobile-screen-button { color: #10b981; } /* App - green */
+.skill-card i.fa-pen-nib { color: #f43f5e; }    /* Graphic - red */
+.skill-card i.fa-language { color: #8b5cf6; }   /* Languages - purple */
+.skill-card i.fa-python { color: #306998; }     /* Python - blue */
+
+@keyframes iconPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+.skill-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 12px;
+  color: #ffffff;
+}
+
+.skill-card p {
+  font-size: 1rem;
+  margin-bottom: 18px;
+  color: #d1d5db;
+  line-height: 1.6;
+  min-height: 60px;
+}
+
+/* ===== Progress Bar ===== */
+.progress-bar {
+  background-color: #374151;
+  height: 10px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progress-bar span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, #38bdf8, #a78bfa);
+  border-radius: 10px;
+  transition: width 1s ease-in-out;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 900px) {
+  .skills-container {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (max-width: 500px) {
+  .skill-card { max-width: 95%; padding: 25px 20px; }
+}
+</style>
+</head>
+<body>
+
+<div id="header"></div>
+
+<section class="skills">
+  <h2 class="section-title">My Skills</h2>
+  <p class="section-subtitle">Here are the key areas I specialize in:</p>
+
+  <div class="skills-container">
+
+    <div class="skill-card">
+      <i class="fa-solid fa-code"></i>
+      <h3>Web Development</h3>
+      <p>Building responsive, modern websites using HTML, CSS, JavaScript, PHP, and MySQL.</p>
+      <div class="progress-bar"><span style="width: 90%;"></span></div>
+    </div>
+
+    <div class="skill-card">
+      <i class="fa-solid fa-mobile-screen-button"></i>
+      <h3>App Creating</h3>
+      <p>Designing and developing Android apps with clean UI and smooth performance.</p>
+      <div class="progress-bar"><span style="width: 80%;"></span></div>
+    </div>
+
+    <div class="skill-card">
+      <i class="fa-solid fa-pen-nib"></i>
+      <h3>Graphic Design</h3>
+      <p>Creating stunning visuals, logos, and posters using Canva, Photoshop, and Figma.</p>
+      <div class="progress-bar"><span style="width: 85%;"></span></div>
+    </div>
+
+    <div class="skill-card">
+      <i class="fa-solid fa-language"></i>
+      <h3>Languages</h3>
+      <p>Proficient in HTML, CSS, JavaScript, PHP, Python, and Java with problem-solving ability.</p>
+      <div class="progress-bar"><span style="width: 75%;"></span></div>
+    </div>
+
+    <div class="skill-card">
+      <i class="fa-brands fa-python"></i>
+      <h3>Python</h3>
+      <p>Experience in Python programming, data analysis, automation, and scripting projects.</p>
+      <div class="progress-bar"><span style="width: 100%;"></span></div>
+    </div>
+
+  </div>
+</section>
+
+<div id="footer"></div>
+
+</body>
+</html>

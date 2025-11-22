@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>INSATH Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+      color: #f8fafc;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+      min-height: 200vh;
+    }
+
+    header {
+      width: 100%;
+      background: rgba(17, 25, 40, 0.75);
+      backdrop-filter: blur(15px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 8%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.4s ease;
+    }
+
+    header.scrolled {
+      background: rgba(17, 25, 40, 0.95);
+      box-shadow: 0 4px 20px rgba(56, 189, 248, 0.35);
+      padding: 14px 8%;
+      transform: translateY(-2px);
+    }
+
+    /* Logo without photo */
+    header .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #38bdf8;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    header .logo::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      width: 0%;
+      height: 3px;
+      background: linear-gradient(90deg, #38bdf8, #a78bfa);
+      border-radius: 2px;
+      transition: width 0.4s ease;
+    }
+
+    header .logo:hover::after {
+      width: 100%;
+    }
+
+    nav .nav-links {
+      display: flex;
+      gap: 35px;
+    }
+
+    nav .nav-links li {
+      list-style: none;
+    }
+
+    nav .nav-links li a {
+      color: #f1f5f9;
+      text-decoration: none;
+      font-weight: 600;
+      position: relative;
+      transition: 0.3s;
+      padding: 5px 0;
+    }
+
+    nav .nav-links li a::after {
+      content: "";
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: linear-gradient(90deg, #38bdf8, #a78bfa);
+      transition: width 0.3s ease;
+      border-radius: 2px;
+    }
+
+    nav .nav-links li a:hover::after,
+    nav .nav-links li a.active::after {
+      width: 100%;
+    }
+
+    nav .nav-links li a:hover {
+      color: #38bdf8;
+      transform: scale(1.05);
+    }
+
+    nav .nav-links li a.active {
+      color: #a78bfa;
+      text-shadow: 0 0 8px #38bdf8;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 1.6rem;
+      cursor: pointer;
+      color: #38bdf8;
+      transition: transform 0.3s ease;
+    }
+
+    .menu-toggle:hover {
+      transform: rotate(90deg) scale(1.2);
+    }
+
+    @media (max-width: 768px) {
+      nav .nav-links {
+        position: absolute;
+        top: 70px;
+        right: -100%;
+        flex-direction: column;
+        background: rgba(17, 25, 40, 0.95);
+        width: 220px;
+        height: calc(100vh - 70px);
+        padding-top: 30px;
+        gap: 20px;
+        transition: right 0.4s ease;
+        box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
+        border-radius: 0 0 10px 0;
+      }
+
+      nav .nav-links.active {
+        right: 0;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header id="header">
+    <div class="logo">S.M INSATH</div>
+
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="skills.html">Skills</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="resume.html">Resume</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="menu-toggle" id="menu-toggle">
+        <i class="fa fa-bars"></i>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ===== SCRIPT ===== -->
+  <script>
+    // Mobile Menu Toggle
+    const menuToggle = document.getElementById("menu-toggle");
+    const navLinks = document.querySelector(".nav-links");
+    menuToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+    });
+
+    // Scroll Effect
+    const header = document.getElementById("header");
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 50) {
+        header.classList.add("scrolled");
+      } else {
+        header.classList.remove("scrolled");
+      }
+    });
+
+    // Highlight Current Page
+    const currentPage = window.location.pathname.split("/").pop();
+    const links = document.querySelectorAll(".nav-links a");
+    links.forEach(link => {
+      const href = link.getAttribute("href");
+      if (href === currentPage) {
+        link.classList.add("active");
+      } else {
+        link.classList.remove("active");
+      }
+    });
+  </script>
+
+</body>
+</html>
