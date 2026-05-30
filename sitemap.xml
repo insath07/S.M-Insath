@@ -4,6 +4,12 @@
   <url>
     <loc>https://insath07.github.io/S.M-Insath/</loc>
     <image:image>
+      <image:loc>https://insath07.github.io/S.M-Insath/images/insath-professional-profile-photo.jpg</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://insath07.github.io/S.M-Insath/portfolio-photos.html</loc>
+    <image:image>
       <image:loc>https://insath07.github.io/S.M-Insath/images/insath-software-developer-portfolio.jpg</image:loc>
     </image:image>
     <image:image>
