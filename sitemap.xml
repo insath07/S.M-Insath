@@ -65,6 +65,12 @@
     <loc>https://insath07.github.io/projects.html</loc>
   </url>
   <url>
+    <loc>https://insath07.github.io/tekryn-deployment.html</loc>
+    <image:image>
+      <image:loc>https://insath07.github.io/images/tekryn-oracle-cloud-deployment.png</image:loc>
+    </image:image>
+  </url>
+  <url>
     <loc>https://insath07.github.io/resume.html</loc>
   </url>
   <url>
