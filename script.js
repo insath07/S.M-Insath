@@ -9,7 +9,7 @@ if (menuToggle) {
 }
 
 // ================== SCROLL REVEAL ANIMATION ==================
-const revealElements = document.querySelectorAll('.section-title, .hero-content, .about, .skills-container, .projects-container, .contact-container, .resume-container');
+const revealElements = document.querySelectorAll('.section-title, .hero-content, .about, .skills-container, .projects-container, .contact-container, .resume-container, .fade-up-reveal');
 
 window.addEventListener('scroll', () => {
   const windowHeight = window.innerHeight;
